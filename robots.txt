@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jsonformatter.example.com/sitemap.xml
+Sitemap: https://json-formatter.fhemanshu.workers.dev/sitemap.xml
 
 # JSON Formatter Online - Free JSON Validator, Beautifier & Viewer
 # All processing runs client-side. No user data is collected.

@@ -405,7 +405,8 @@ body {
 
 .output-editor {
   margin: 0;
-  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-all;
   cursor: text;
   user-select: text;
 }
@@ -715,6 +716,176 @@ body {
   line-height: 1.5;
 }
 
+/* ---------- Breadcrumb ---------- */
+.breadcrumb {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-base);
+}
+
+.breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.breadcrumb-list li + li::before {
+    content: '›';
+    margin: 0 8px;
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.breadcrumb-list a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumb-list a:hover {
+    color: var(--accent-light);
+}
+
+/* ---------- Content Section (What is JSON) ---------- */
+.content-section {
+    padding: 64px 0;
+}
+
+.content-narrow {
+    max-width: 780px;
+}
+
+.content-article {
+    margin-top: 24px;
+}
+
+.content-article p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.content-article h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 28px 0 12px;
+}
+
+.content-article ul {
+    padding-left: 24px;
+    margin-bottom: 16px;
+}
+
+.content-article li {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 6px;
+}
+
+.content-article code {
+    padding: 2px 6px;
+    background: var(--bg-hover);
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent-light);
+}
+
+.code-example {
+    padding: 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.code-example code {
+    padding: 0;
+    background: transparent;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-primary);
+}
+
+kbd {
+    display: inline-block;
+    padding: 2px 6px;
+    background: var(--bg-hover);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* ---------- Related Tools Section ---------- */
+.related-section {
+    padding: 64px 0;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.related-card {
+    padding: 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.related-card:hover {
+    border-color: var(--accent);
+    background: var(--bg-elevated);
+    transform: translateY(-2px);
+}
+
+.related-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-light);
+    margin-bottom: 4px;
+}
+
+.related-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ---------- Footer Links ---------- */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 16px;
+    margin: 4px 0;
+}
+
+.footer-links a {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--accent-light);
+}
+
 /* ---------- FAQ Section ---------- */
 .faq-section {
   padding: 64px 0;
@@ -863,7 +1034,8 @@ body {
     min-height: 200px;
   }
 
-  .features-grid {
+  .features-grid,
+  .related-grid {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -893,7 +1065,8 @@ body {
     display: none;
   }
 
-  .features-grid {
+  .features-grid,
+  .related-grid {
     grid-template-columns: 1fr;
   }
 

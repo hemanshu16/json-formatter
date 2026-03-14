@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      JSON Formatter & Validator - Free Online JSON Beautifier, Minifier & Tree
+      Viewer
+    </title>
+    <meta
+      name="description"
+      content="Free online JSON formatter, validator and beautifier. Format, minify, validate JSON data instantly. Tree view, syntax highlighting, error detection. 100% client-side — your data never leaves your browser."
+    />
+    <meta
+      name="keywords"
+      content="JSON formatter, JSON validator, JSON beautifier, JSON minifier, JSON viewer, JSON tree view, JSON pretty print, online JSON tool, format JSON, validate JSON"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://jsonformatter.example.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="JSON Formatter & Validator — Free Online Tool"
+    />
+    <meta
+      property="og:description"
+      content="Format, validate, minify and visualize JSON instantly. 100% private — runs entirely in your browser."
+    />
+    <meta property="og:url" content="https://jsonformatter.example.com/" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="JSON Formatter & Validator" />
+    <meta
+      name="twitter:description"
+      content="Free online JSON formatter, validator, beautifier & tree viewer."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "JSON Formatter & Validator",
+        "url": "https://jsonformatter.example.com/",
+        "description": "Free online tool to format, validate, minify, and visualize JSON data. 100% client-side processing.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is JSON?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write and easy for machines to parse and generate. JSON is used widely in web APIs, configuration files, and data storage."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I format JSON online?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Paste your JSON data into the input editor, then click the 'Format' button. The formatted, indented JSON will appear in the output panel instantly. You can also use Ctrl+Enter as a keyboard shortcut."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my JSON data safe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! All processing happens entirely in your browser. Your JSON data never leaves your device and is never sent to any server."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between JSON formatting and minification?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Formatting (or beautifying) adds indentation and line breaks to make JSON human-readable. Minification removes all unnecessary whitespace to reduce file size, which is useful for production environments and APIs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I convert JSON to other formats?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! This tool supports converting JSON to XML, CSV, and YAML formats. Simply paste your JSON and click the desired conversion tab."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-inner">
+        <a href="/" class="logo" aria-label="JSON Formatter Home">
+          <span class="logo-icon">{ }</span>
+          <span class="logo-text"
+            >JSON<span class="logo-accent">Formatter</span></span
+          >
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="#tool" class="nav-link">Formatter</a>
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#convert" class="nav-link">Convert</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">
+          JSON Formatter <span class="gradient-text">& Validator</span>
+        </h1>
+        <p class="hero-subtitle">
+          Format, validate, minify and visualize your JSON data instantly.<br />100%
+          private — everything runs in your browser.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Tool -->
+    <main id="tool" class="tool-section">
+      <div class="container">
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar-group">
+            <button
+              id="btn-format"
+              class="btn btn-primary"
+              title="Format JSON (Ctrl+Enter)"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M4 7h16M4 12h10M4 17h6" />
+              </svg>
+              Format
+            </button>
+            <button
+              id="btn-minify"
+              class="btn"
+              title="Minify JSON (Ctrl+Shift+M)"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M4 12h16" />
+              </svg>
+              Minify
+            </button>
+            <button id="btn-validate" class="btn" title="Validate JSON">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+              Validate
+            </button>
+          </div>
+          <div class="toolbar-group">
+            <label class="indent-selector" title="Indentation">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 6H3M15 12H3M21 18H3M18 9l3 3-3 3" />
+              </svg>
+              <select id="indent-size">
+                <option value="2">2 spaces</option>
+                <option value="4" selected>4 spaces</option>
+                <option value="\t">Tab</option>
+              </select>
+            </label>
+            <button
+              id="btn-sample"
+              class="btn btn-ghost"
+              title="Load sample JSON"
+            >
+              Sample
+            </button>
+            <button
+              id="btn-upload"
+              class="btn btn-ghost"
+              title="Upload JSON file"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"
+                />
+              </svg>
+              Upload
+            </button>
+            <input type="file" id="file-input" accept=".json,.txt" hidden />
+          </div>
+          <div class="toolbar-group">
+            <button id="btn-copy" class="btn btn-ghost" title="Copy output">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+              </svg>
+              Copy
+            </button>
+            <button
+              id="btn-download"
+              class="btn btn-ghost"
+              title="Download JSON"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"
+                />
+              </svg>
+              Download
+            </button>
+            <button id="btn-clear" class="btn btn-ghost" title="Clear all">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"
+                />
+              </svg>
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <!-- Editor Panels -->
+        <div class="editor-container">
+          <!-- Input Panel -->
+          <div class="editor-panel">
+            <div class="panel-header">
+              <span class="panel-title">Input</span>
+              <span id="input-size" class="panel-badge">0 chars</span>
+            </div>
+            <div class="editor-wrap">
+              <div class="line-numbers" id="input-lines">1</div>
+              <textarea
+                id="json-input"
+                class="editor"
+                placeholder="Paste your JSON here..."
+                spellcheck="false"
+                aria-label="JSON Input"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Output Panel -->
+          <div class="editor-panel">
+            <div class="panel-header">
+              <div class="output-tabs">
+                <button class="tab active" data-tab="formatted">
+                  Formatted
+                </button>
+                <button class="tab" data-tab="tree">Tree View</button>
+              </div>
+              <span id="output-size" class="panel-badge">0 chars</span>
+            </div>
+            <div class="editor-wrap" id="output-formatted">
+              <div class="line-numbers" id="output-lines">1</div>
+              <pre
+                id="json-output"
+                class="editor output-editor"
+                aria-label="JSON Output"
+              ></pre>
+            </div>
+            <div class="tree-container" id="output-tree" style="display: none">
+              <div
+                id="json-tree"
+                class="tree"
+                aria-label="JSON Tree View"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+          <div id="status-message" class="status-msg"></div>
+          <div class="status-meta">
+            <span id="status-lines">Lines: 0</span>
+            <span class="divider">|</span>
+            <span id="status-size">Size: 0 B</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Conversion Section -->
+    <section id="convert" class="convert-section">
+      <div class="container">
+        <h2 class="section-title">Convert JSON</h2>
+        <p class="section-subtitle">
+          Transform your JSON into other popular data formats
+        </p>
+        <div class="convert-tabs">
+          <button class="convert-tab active" data-convert="xml">
+            JSON → XML
+          </button>
+          <button class="convert-tab" data-convert="csv">JSON → CSV</button>
+          <button class="convert-tab" data-convert="yaml">JSON → YAML</button>
+        </div>
+        <div class="convert-output-wrap">
+          <div class="convert-toolbar">
+            <button id="btn-convert-copy" class="btn btn-ghost btn-sm">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+              </svg>
+              Copy
+            </button>
+            <button id="btn-convert-download" class="btn btn-ghost btn-sm">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"
+                />
+              </svg>
+              Download
+            </button>
+          </div>
+          <pre
+            id="convert-output"
+            class="convert-output"
+            aria-label="Conversion Output"
+          >
+Paste JSON in the input above and click a conversion tab.</pre
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+      <div class="container">
+        <h2 class="section-title">Why Use Our JSON Formatter?</h2>
+        <p class="section-subtitle">
+          Powerful features wrapped in a clean, minimalist interface
+        </p>
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Instant Formatting</h3>
+            <p>
+              Format and beautify JSON with a single click. Supports
+              customizable indentation with 2 spaces, 4 spaces, or tabs.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>100% Private</h3>
+            <p>
+              Your data never leaves your browser. All processing runs entirely
+              client-side — no data is ever sent to any server.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3>Smart Validation</h3>
+            <p>
+              Instantly detect syntax errors with detailed messages showing the
+              exact line and position of the problem.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🌳</div>
+            <h3>Interactive Tree View</h3>
+            <p>
+              Explore complex JSON structures with a collapsible, color-coded
+              tree view. Perfect for navigating deeply nested data.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3>Format Conversion</h3>
+            <p>
+              Convert JSON to XML, CSV, or YAML with one click. Export in the
+              format that suits your workflow.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h3>Copy & Download</h3>
+            <p>
+              Copy formatted output to clipboard or download as a file. Upload
+              JSON files directly from your device.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How To Use -->
+    <section class="howto-section">
+      <div class="container">
+        <h2 class="section-title">How to Format JSON Online</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Paste or Upload</h3>
+              <p>
+                Paste your raw JSON into the input editor, or click "Upload" to
+                load a .json file from your device.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Click Format</h3>
+              <p>
+                Hit the "Format" button (or press Ctrl+Enter) to instantly
+                beautify your JSON with proper indentation.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Copy or Download</h3>
+              <p>
+                Copy the formatted result to your clipboard, download it as a
+                file, or switch to Tree View to explore the structure visually.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+      <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is JSON?</summary>
+            <div class="faq-answer">
+              <p>
+                JSON (JavaScript Object Notation) is a lightweight, text-based
+                data interchange format. It's easy for humans to read and write,
+                and easy for machines to parse and generate. JSON is the most
+                common format for transmitting data in web applications between
+                a server and client.
+              </p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>How do I format JSON online?</summary>
+            <div class="faq-answer">
+              <p>
+                Simply paste your raw or minified JSON into the input editor on
+                the left, then click the "Format" button. The tool will
+                instantly beautify it with proper indentation. You can also use
+                the keyboard shortcut Ctrl+Enter.
+              </p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Is my JSON data safe and private?</summary>
+            <div class="faq-answer">
+              <p>
+                Absolutely. All formatting, validation, and conversion happens
+                entirely in your browser using JavaScript. Your data is never
+                transmitted to any server. This makes it completely safe to use
+                with sensitive or confidential data.
+              </p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>
+              What is the difference between formatting and minifying JSON?
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Formatting (beautifying) adds indentation, line breaks, and
+                spacing to make JSON human-readable. Minifying removes all
+                unnecessary whitespace and line breaks to produce the most
+                compact representation, which is ideal for reducing file size in
+                production environments.
+              </p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I convert JSON to XML, CSV, or YAML?</summary>
+            <div class="faq-answer">
+              <p>
+                Yes! After pasting your JSON into the input, scroll down to the
+                "Convert JSON" section. Click on the desired format tab (XML,
+                CSV, or YAML) to instantly transform your data. You can then
+                copy or download the result.
+              </p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>What keyboard shortcuts are available?</summary>
+            <div class="faq-answer">
+              <p>
+                <strong>Ctrl + Enter</strong> — Format/beautify JSON<br /><strong
+                  >Ctrl + Shift + M</strong
+                >
+                — Minify JSON<br />These shortcuts work when the input editor is
+                focused.
+              </p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>What types of JSON errors can this tool detect?</summary>
+            <div class="faq-answer">
+              <p>
+                The validator can detect all JSON syntax errors including:
+                missing or extra commas, unmatched brackets or braces, invalid
+                string formatting, incorrect use of quotes, trailing commas, and
+                more. Error messages include the line and position of the issue.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <span class="logo-icon logo-icon-sm">{ }</span>
+          <span class="footer-text">JSONFormatter — Free Online JSON Tool</span>
+        </div>
+        <div class="footer-meta">
+          <span>🔒 All processing happens in your browser</span>
+          <span class="divider">·</span>
+          <span>No data is ever sent to a server</span>
+        </div>
+        <div class="footer-copy">
+          © 2026 JSONFormatter. Built for developers.
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
